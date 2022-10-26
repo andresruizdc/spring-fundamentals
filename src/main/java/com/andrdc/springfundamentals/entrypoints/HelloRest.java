@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloRest {
     @GetMapping("/v1/hello")
     public Greet greet(@RequestParam(required = false, defaultValue = "World") String name) {
-        return new Greet("Hello, " + name + "!");
+        return new Greet(String.format("Hello, %s!", name));
     }
 }

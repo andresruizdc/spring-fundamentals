@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class HelloRestTest {
@@ -17,9 +18,8 @@ public class HelloRestTest {
     private TestRestTemplate template;
 
     @Test
-    public void greetWithName() {
-        Greet response = template.getForObject("/v1/hello?name=Gizmo", Greet.class);
-        assertEquals("Hello, Gizmo!", response.getMessage());
+    public void autoWiringWorks() {
+        assertNotNull(template);
     }
 
     @Test
@@ -31,5 +31,11 @@ public class HelloRestTest {
         if (response != null) {
             assertEquals("Hello, World!", response.getMessage());
         }
+    }
+
+    @Test
+    public void greetWithName() {
+        Greet response = template.getForObject("/v1/hello?name=Gizmo", Greet.class);
+        assertEquals("Hello, Gizmo!", response.getMessage());
     }
 }

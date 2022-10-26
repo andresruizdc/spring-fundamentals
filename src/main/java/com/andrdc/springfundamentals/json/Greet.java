@@ -1,18 +1,20 @@
 package com.andrdc.springfundamentals.json;
 
 public class Greet {
-    private final String message;
+    private String message;
+
+    public Greet(){}
 
     public Greet(String message) {
         this.message = message;
     }
 
     public String getMessage() {
-        return this.message;
+        return message;
     }
 
     @Override
     public String toString() {
-        return "Greet {" + "message='" + this.message + '\'' + "}";
+        return "Greet{" + "message='" + message + '\'' + "}";
     }
 }
