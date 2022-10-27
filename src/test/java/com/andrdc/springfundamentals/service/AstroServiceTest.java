@@ -32,4 +32,17 @@ public class AstroServiceTest {
             () -> assertEquals(number, people.size())
         );
     }
+
+    @Test
+    void getAstronautsWebClient() {
+        AstroResult result = service.getAstronautsWebClient();
+        final int number = result.getNumber();
+        System.out.println(String.format("There are %s people in space", number));
+        List<Assignment> people = result.getPeople();
+        people.forEach(System.out::println);
+        assertAll(
+                () -> assertTrue(number >= 0),
+                () -> assertEquals(number, people.size())
+        );
+    }
 }
