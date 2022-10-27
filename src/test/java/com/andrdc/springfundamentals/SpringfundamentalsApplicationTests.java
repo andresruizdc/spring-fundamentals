@@ -1,14 +1,14 @@
 package com.andrdc.springfundamentals;
 
 import com.andrdc.springfundamentals.json.Greet;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class SpringfundamentalsApplicationTests {
@@ -30,8 +30,15 @@ class SpringfundamentalsApplicationTests {
 		}
 	}
 
-	@Test
+	@Test @Disabled
 	void noGreetInApplicationContext() {
 		assertThrows(NoSuchBeanDefinitionException.class, () -> context.getBean(Greet.class));
+	}
+
+	@Test
+	void getBeanTwice() {
+		Greet greet1 = context.getBean("defaultGreet", Greet.class);
+		Greet greet2 = context.getBean("whatUpGreet", Greet.class);
+		assertNotSame(greet1, greet2);
 	}
 }
